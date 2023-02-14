@@ -8,8 +8,10 @@ export default async function (req, res) {
 
     const app = req.headers.host.substring(0, req.headers.host.indexOf('.conflictjs.dev'));
 
+    const url = 'https://vercel-conflict-bot.vercel.app/discord';
+
     if (isDiscordInteractions) {
-        const response = await fetch('https://vercel-conflict-bot.vercel.app/discord', {
+        const response = await fetch(url, {
             method: req.method,
             headers: req.headers,
             body: req.body
@@ -18,7 +20,9 @@ export default async function (req, res) {
         for (const header in response.headers) {
             try {
                 res.setHeader(header, response.headers[header]);
-            } catch (err) {}
+            } catch (err) {
+                console.error(err);
+            }
         }
 
         const text = await response.text();
@@ -28,7 +32,9 @@ export default async function (req, res) {
             responseHeaders: response.headers,
             status: response.status,
             responseBody: text,
-            requestBody: req.body
+            requestBody: req.body,
+            url,
+            response
         };
 
         console.log(data);
