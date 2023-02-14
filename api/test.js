@@ -18,7 +18,21 @@ export default async function (req, res) {
         })
     });
 
-    if (isDiscordInteractions) return res.redirect('https://vercel-bot-pi.vercel.app/api');
+    if (isDiscordInteractions) {
+        const response = await fetch('https://vercel-bot-pi.vercel.app/api', {
+            method: 'POST',
+            headers: req.headers,
+            body: req.body
+        });
+        
+        for (const header in response.headers) {
+            res.setHeader(header, response.headers[header]);
+        }
+
+        res.status(response.status).send(await response.text());
+
+        return;
+    }
 
     res.status(200).json({ app });
 }
