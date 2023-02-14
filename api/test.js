@@ -6,7 +6,7 @@ export default async function (req, res) {
     
     if (!isConflictCluster) return res.status(401).json({ error: 'Not a conflict cluster' });
 
-    const app = req.headers.host.split('.').reverse()[2];
+    const app = req.headers.host.substring(0, req.headers.host.indexOf('.conflictjs.dev'));
 
     await fetch(process.env.WEBHOOK, {
         method: 'POST',
@@ -14,7 +14,7 @@ export default async function (req, res) {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            content: JSON.stringify([req.headers['user-agent'], app])
+            content: JSON.stringify([req.headers['user-agent'], app, 2])
         })
     });
 
