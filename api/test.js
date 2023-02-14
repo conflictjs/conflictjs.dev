@@ -13,7 +13,7 @@ export default async function (req, res) {
     if (isDiscordInteractions) {
         const response = await fetch(url, {
             method: req.method,
-            headers: req.headers,
+            // headers: req.headers,
             body: req.body
         });
         
