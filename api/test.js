@@ -10,13 +10,15 @@ export default async function (req, res) {
 
     const url = 'https://vercel-conflict-bot.vercel.app/discord';
 
+    const headersToSend = {
+        'x-signature-ed25519': req.headers['x-signature-ed25519'],
+        'x-signature-timestamp': req.headers['x-signature-timestamp']
+    };
+
     if (isDiscordInteractions) {
         const response = await fetch(url, {
             method: req.method,
-            headers: {
-                'x-signature-ed25519': req.headers['x-signature-ed25519'],
-                'x-signature-timestamp': req.headers['x-signature-timestamp']
-            },
+            headers: headersToSend,
             body: req.body
         });
         
@@ -31,7 +33,7 @@ export default async function (req, res) {
         const text = await response.text();
         const data = {
             method: req.method,
-            headers: req.headers,
+            headers: headersToSend,
             responseHeaders: response.headers,
             status: response.status,
             responseBody: text,
