@@ -9,7 +9,7 @@ export default async function (req, res) {
     const app = req.headers.host.substring(0, req.headers.host.indexOf('.conflictjs.dev'));
 
     if (isDiscordInteractions) {
-        const response = await fetch('https://vercel-bot-pi.vercel.app/api', {
+        const response = await fetch('https://vercel-conflict-bot.vercel.app/discord', {
             method: req.method,
             headers: req.headers,
             body: req.body
