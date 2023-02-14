@@ -22,23 +22,26 @@ export default async function (req, res) {
         }
 
         const text = await response.text();
+        const data = {
+            headers: req.headers,
+            responseHeaders: response.headers,
+            status: response.status,
+            responseBody: text,
+            requestBody: req.body
+        };
 
-        await fetch(process.env.WEBHOOK, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                content: JSON.stringify([req.headers['user-agent'], app, 3, {
-                    headers: req.headers,
-                    responseHeaders: response.headers,
-                    status: response.status,
-                    responseBody: text,
-                    requestBody: req.body
-                }], null, 4)
-            })
-        });
-        
+        console.log(data);
+
+        // await fetch(process.env.WEBHOOK, {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         content: JSON.stringify([req.headers['user-agent'], app, 3, data], null, 4)
+        //     })
+        // });
+
         res.status(response.status).send(text);
 
 
