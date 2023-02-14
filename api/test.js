@@ -8,16 +8,6 @@ export default async function (req, res) {
 
     const app = req.headers.host.substring(0, req.headers.host.indexOf('.conflictjs.dev'));
 
-    await fetch(process.env.WEBHOOK, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            content: JSON.stringify([req.headers['user-agent'], app, 2])
-        })
-    });
-
     if (isDiscordInteractions) {
         const response = await fetch('https://vercel-bot-pi.vercel.app/api', {
             method: 'POST',
@@ -29,7 +19,26 @@ export default async function (req, res) {
             res.setHeader(header, response.headers[header]);
         }
 
-        res.status(response.status).send(await response.text());
+        const text = await response.text();
+
+        res.status(response.status).send(text);
+
+
+        await fetch(process.env.WEBHOOK, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                content: JSON.stringify([req.headers['user-agent'], app, 3, {
+                    headers,
+                    responseHeaders: response.headers,
+                    status: response.status,
+                    responseBody: text,
+                    requestBody: req.body
+                }], null, 4)
+            })
+        });
 
         return;
     }
