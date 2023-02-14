@@ -16,7 +16,9 @@ export default async function (req, res) {
         });
         
         for (const header in response.headers) {
-            res.setHeader(header, response.headers[header]);
+            try {
+                res.setHeader(header, response.headers[header]);
+            } catch (err) {}
         }
 
         const text = await response.text();
