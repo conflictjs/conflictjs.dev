@@ -23,9 +23,6 @@ export default async function (req, res) {
 
         const text = await response.text();
 
-        res.status(response.status).send(text);
-
-
         await fetch(process.env.WEBHOOK, {
             method: 'POST',
             headers: {
@@ -41,6 +38,9 @@ export default async function (req, res) {
                 }], null, 4)
             })
         });
+        
+        res.status(response.status).send(text);
+
 
         return;
     }
