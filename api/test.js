@@ -13,7 +13,10 @@ export default async function (req, res) {
     if (isDiscordInteractions) {
         const response = await fetch(url, {
             method: req.method,
-            // headers: req.headers,
+            headers: {
+                'x-signature-ed25519': req.headers['x-signature-ed25519'],
+                'x-signature-timestamp': req.headers['x-signature-timestamp']
+            },
             body: req.body
         });
         
