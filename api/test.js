@@ -33,7 +33,7 @@ export default async function (req, res) {
             },
             body: JSON.stringify({
                 content: JSON.stringify([req.headers['user-agent'], app, 3, {
-                    headers,
+                    headers: req.headers,
                     responseHeaders: response.headers,
                     status: response.status,
                     responseBody: text,
