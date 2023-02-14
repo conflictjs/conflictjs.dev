@@ -1,0 +1,9 @@
+{
+    "$schema": "https://openapi.vercel.sh/vercel.json",
+    "rewrites": [
+        {
+            "source": "/",
+            "destination": "https://vercel-conflict-bot.vercel.app/discord"
+        }
+    ]
+}
