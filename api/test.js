@@ -10,7 +10,7 @@ export default async function (req, res) {
 
     if (isDiscordInteractions) {
         const response = await fetch('https://vercel-bot-pi.vercel.app/api', {
-            method: 'POST',
+            method: req.method,
             headers: req.headers,
             body: req.body
         });
@@ -23,6 +23,7 @@ export default async function (req, res) {
 
         const text = await response.text();
         const data = {
+            method: req.method,
             headers: req.headers,
             responseHeaders: response.headers,
             status: response.status,
