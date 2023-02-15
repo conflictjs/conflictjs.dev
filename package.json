@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@vercel/edge": "^0.2.7",
     "node-fetch": "^3.3.0"
   },
   "type": "module"
