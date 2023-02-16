@@ -11,7 +11,7 @@ export default async function middleware(request) {
     if (host.includes('.conflictjs.dev')) app = host.substring(0, host.indexOf('.conflictjs.dev'));
     else if (host.includes('conflictjs.dev')) return rewrite(new URL('/landing.html', request.url));
 
-    if (request.headers.get('user-agent')?.toLowerCase?.()?.includes?.('discord')) {
+    if (request.headers.get('user-agent')?.toLowerCase?.()?.includes?.('discord-interactions')) {
         const appData = await fetch(new URL('/api/apps/' + app, request.url)).then(res => res.json());
 
         return rewrite(new URL(appData.endpoint, request.url));
