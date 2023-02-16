@@ -1,13 +1,81 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>conflictjs.dev</title>
+    <link rel="favicon" href="/favicon.png" type="image/png">
+    <link rel="icon" href="/favicon.png" type="image/png">
+    <link rel="shortcut icon" href="/favicon.png" type="image/png">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/dark.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        a.logo:hover {
+            /*
+            color: white;
+            background: linear-gradient(69deg, #ff4b4c 0px, #ff4b4c 28.4px, #196ce4 19px, #196ce4 33px);
+            */
+            color: #196ce4;
+            background: white;
+        }
+
+        a.logo {
+            background: transparent;
+            border-radius: 22px;
+            height: 40px !important;
+            display: inline-block;
+            padding: 2px;
+            padding-right: 4px;
+            margin: -2px;
+            transition: 0.2s all;
+            color: unset;
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 40px;
+            box-sizing: border-box;
+            color: white;
+            font-family: 'Space Grotesk';
+        }
+
+        .nav-item {
+            display: inline-block;
+            text-decoration: none;
+            color: white;
+            vertical-align: top;
+            margin: 0px;
+        }
+
+        a.nav-item {
+            font-size: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            text-decoration: none;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>conflictjs.dev</h1>
+    <div class="nav">
+        <h1 class="nav-item">
+            <a class="logo" href="https://conflictjs.dev" style="font-family: 'Space Grotesk'; text-decoration: none; line-height: 0px;">
+                <img src="/favicon.png" style="height: 40px; vertical-align: text-bottom;" alt="conflictjs">
+                .dev
+            </a>
+        </h1>
+        <span>
+            <a class="nav-item" style="filter: opacity(0.7); cursor: default;">Relay [Coming Soon]</a>
+            <span style="margin-left: 10px; margin-right: 10px; display: inline-block; pointer-events: none; user-select: none; transform: scale(0.5);">•</span>
+        <a class="nav-item" href="https://conflict.js.org" target="_blank">Conflict.js ↗</a>
+    </span>
+    </div>
 </body>
+
 </html>
